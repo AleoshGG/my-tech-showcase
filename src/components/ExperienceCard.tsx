@@ -6,17 +6,16 @@ interface ExperienceCardProps {
   description: string;
   duration: string;
   role: string;
-  /** Placeholder for a real project screenshot */
   imageSrc?: string;
   index: number;
 }
 
 const ExperienceCard = ({ company, year, description, duration, role, imageSrc, index }: ExperienceCardProps) => (
   <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
+    initial={{ opacity: 0, x: 50 }}
+    whileInView={{ opacity: 1, x: 0 }}
     viewport={{ once: true }}
-    transition={{ delay: index * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+    transition={{ delay: index * 0.12, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
     className="glass-surface-hover rounded-lg overflow-hidden group"
   >
     <div className="p-5">
@@ -34,7 +33,6 @@ const ExperienceCard = ({ company, year, description, duration, role, imageSrc, 
         </p>
       </div>
     </div>
-    {/* Image placeholder */}
     <div className="h-32 bg-secondary/50 overflow-hidden">
       {imageSrc ? (
         <img src={imageSrc} alt={company} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
