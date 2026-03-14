@@ -1,6 +1,6 @@
+import { motion } from "framer-motion";
 import DarkSection from "./DarkSection";
 import SectionLabel from "./SectionLabel";
-import { motion } from "framer-motion";
 
 const blogPosts = [
   { title: "Artículo de Blog #1", imageSrc: "" },
@@ -10,17 +10,24 @@ const blogPosts = [
 
 const BlogSection = () => (
   <DarkSection className="py-[15vh] pb-[20vh]">
-    <SectionLabel>Blog</SectionLabel>
+    <motion.div
+      initial={{ opacity: 0, x: -30 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <SectionLabel>Blog</SectionLabel>
+    </motion.div>
 
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
       {blogPosts.map((post, i) => (
         <motion.a
           key={i}
           href="#"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: i % 2 === 0 ? -40 : 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: i * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ delay: i * 0.12, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="glass-surface-hover rounded-lg overflow-hidden group block"
         >
           <div className="aspect-video bg-secondary/50 overflow-hidden">

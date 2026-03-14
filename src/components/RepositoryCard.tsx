@@ -8,10 +8,10 @@ interface RepositoryCardProps {
 
 const RepositoryCard = ({ name, description, index }: RepositoryCardProps) => (
   <motion.div
-    initial={{ opacity: 0, x: -20 }}
+    initial={{ opacity: 0, x: -40 }}
     whileInView={{ opacity: 1, x: 0 }}
     viewport={{ once: true }}
-    transition={{ delay: index * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+    transition={{ delay: 0.15 + index * 0.12, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
     className="glass-surface-hover rounded-lg p-4 cursor-pointer"
   >
     <h4 className="font-mono text-xs font-semibold text-foreground tracking-wide">{name}</h4>

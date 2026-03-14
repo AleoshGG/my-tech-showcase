@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import heroBg from "@/assets/hero-bg.jpg";
 import { Mail, Github, Send, Linkedin, MessageCircle, Instagram } from "lucide-react";
+import Typewriter from "./Typewriter";
 
 const socialLinks = [
   { icon: Mail, href: "#", label: "Email" },
@@ -12,6 +14,8 @@ const socialLinks = [
 ];
 
 const HeroSection = () => {
+  const [titleReady, setTitleReady] = useState(false);
+
   return (
     <section className="relative min-h-screen flex flex-col overflow-hidden">
       {/* Background image with mask */}
@@ -27,8 +31,13 @@ const HeroSection = () => {
       {/* Noise overlay */}
       <div className="absolute inset-0 noise-overlay pointer-events-none" />
 
-      {/* Nav */}
-      <nav className="relative z-20 flex items-center justify-between px-6 md:px-12 py-6 max-w-6xl mx-auto w-full">
+      {/* Nav - slide from top */}
+      <motion.nav
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="relative z-20 flex items-center justify-between px-6 md:px-12 py-6 max-w-6xl mx-auto w-full"
+      >
         <a href="#about" className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground hover:text-primary transition-colors duration-300">
           Sobre mí
         </a>
@@ -38,51 +47,66 @@ const HeroSection = () => {
         >
           Descargar CV
         </a>
-      </nav>
+      </motion.nav>
 
       {/* Content */}
       <div className="relative z-10 flex-1 flex items-center max-w-6xl mx-auto w-full px-6 md:px-12 pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 w-full items-end">
-          {/* Left: Title */}
+          {/* Left: Title - slides from left */}
           <div>
             <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -40 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="font-mono text-xs tracking-[0.3em] text-muted-foreground mb-6"
             >
-              aleosh.online
+              <Typewriter text="aleosh.online" delay={400} speed={80} />
             </motion.p>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-[-0.04em] leading-[0.9] text-foreground"
             >
-              INGENIERO
-              <br />
-              <span className="text-gradient-primary">DE</span>
-              <br />
-              SOFTWARE
-            </motion.h1>
+              <Typewriter
+                text="INGENIERO DE SOFTWARE"
+                delay={1600}
+                speed={70}
+                onComplete={() => setTitleReady(true)}
+                className="whitespace-pre-wrap"
+              />
+            </motion.div>
 
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.7, duration: 0.6 }}
-              className="mt-10"
+              initial={{ opacity: 0, x: -30 }}
+              animate={titleReady ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-10 opacity-0"
+              style={titleReady ? { opacity: 1 } : {}}
             >
-              <p className="text-foreground font-medium text-lg">Alexis Guzmán</p>
-              <p className="font-mono text-xs text-muted-foreground mt-1">
+              <motion.p
+                initial={{ opacity: 0, x: -20 }}
+                animate={titleReady ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: 0.1, duration: 0.5 }}
+                className="text-foreground font-medium text-lg"
+              >
+                Alexis Guzmán
+              </motion.p>
+              <motion.p
+                initial={{ opacity: 0, x: -20 }}
+                animate={titleReady ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: 0.3, duration: 0.5 }}
+                className="font-mono text-xs text-muted-foreground mt-1"
+              >
                 +52 9671920196 | aleoguzman092@gmail.com
-              </p>
+              </motion.p>
             </motion.div>
           </div>
 
-          {/* Right: Contact */}
+          {/* Right: Contact - slides from right */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: 60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.5, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col items-start lg:items-end gap-6"
@@ -91,16 +115,18 @@ const HeroSection = () => {
               contacto
             </p>
             <div className="flex gap-3">
-              {socialLinks.map(({ icon: Icon, href, label }) => (
-                <a
+              {socialLinks.map(({ icon: Icon, href, label }, i) => (
+                <motion.a
                   key={label}
                   href={href}
                   aria-label={label}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.7 + i * 0.08, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                   className="w-11 h-11 rounded-lg glass-surface-hover flex items-center justify-center group"
                 >
-                  {/* Placeholder: replace with real brand icons/images */}
                   <Icon className="w-5 h-5 text-muted-foreground grayscale group-hover:grayscale-0 group-hover:text-primary transition-all duration-300" />
-                </a>
+                </motion.a>
               ))}
             </div>
           </motion.div>

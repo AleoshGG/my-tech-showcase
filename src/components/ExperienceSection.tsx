@@ -1,7 +1,7 @@
+import { motion } from "framer-motion";
 import DarkSection from "./DarkSection";
 import SectionLabel from "./SectionLabel";
 import ExperienceCard from "./ExperienceCard";
-import { motion } from "framer-motion";
 
 const experiences = [
   {
@@ -36,13 +36,20 @@ const experiences = [
 
 const ExperienceSection = () => (
   <DarkSection className="py-[15vh]">
-    <SectionLabel>Experiencia</SectionLabel>
+    <motion.div
+      initial={{ opacity: 0, x: -30 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <SectionLabel>Experiencia</SectionLabel>
+    </motion.div>
 
     <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 mt-8">
-      {/* Left: Description */}
+      {/* Left: Description - slide from left */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
@@ -51,7 +58,7 @@ const ExperienceSection = () => (
         </p>
       </motion.div>
 
-      {/* Right: Cards grid */}
+      {/* Right: Cards grid - slide from right, staggered */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {experiences.map((exp, i) => (
           <ExperienceCard key={i} {...exp} index={i} />
