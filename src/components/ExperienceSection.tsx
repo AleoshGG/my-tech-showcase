@@ -10,27 +10,31 @@ const experiences = [
     description: "Sistema de gestión administrativa de un laboratorio de análisis clínicos",
     duration: "4 meses",
     role: "Líder del proyecto y líder del equipo de desarrollo Backend.",
+    imgeSrc: "/src/assets/lab.webp"
   },
   {
     company: "PyBot",
     year: "2025",
-    description: "Sistema de gestión administrativa de un laboratorio de análisis clínicos",
+    description: "Desarrollo de un sistema robótico autónomi limpiador y seleccionador de residuos plástico y de aluminio.",
     duration: "4 meses",
-    role: "Líder del proyecto y líder del equipo de desarrollo Backend.",
+    role: "Liderl del equipo Bakckend, Arquitectura de Software, DevOps.",
+    imgeSrc: "/src/assets/py.webp"
   },
   {
-    company: "AmberLab",
-    year: "2024",
-    description: "Sistema de gestión administrativa de un laboratorio de análisis clínicos",
+    company: "LearnSS",
+    year: "2026",
+    description: "Aplicación móvil que responde a la necesidad de crear apps que sirvan para bien, en este caso habre la puesta para que niños puedan explorar el Sistema Solar, una app de divulgación científica.",
     duration: "4 meses",
-    role: "Líder del proyecto y líder del equipo de desarrollo Backend.",
+    role: "Desarrollador Móvil",
+    imgeSrc: "/src/assets/ss.webp"
   },
   {
-    company: "AmberLab",
+    company: "Unidos por la Sangre",
     year: "2024",
-    description: "Sistema de gestión administrativa de un laboratorio de análisis clínicos",
+    description: "Sistema de gestión de donadores de sangre y personas que buscan donar su sangre. Una aplicación itermediaria para encontrar esperanza de vida en personas que tienen el corazón de colaborar.",
     duration: "4 meses",
-    role: "Líder del proyecto y líder del equipo de desarrollo Backend.",
+    role: "Desarrollador Backend.",
+    imgeSrc: "/src/assets/ups.webp"
   },
 ];
 
@@ -61,7 +65,7 @@ const ExperienceSection = () => (
       {/* Right: Cards grid - slide from right, staggered */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {experiences.map((exp, i) => (
-          <ExperienceCard key={i} {...exp} index={i} />
+          <ExperienceCard key={i} {...exp} index={i} imageSrc={exp.imgeSrc}/>
         ))}
       </div>
     </div>

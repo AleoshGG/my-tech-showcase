@@ -6,11 +6,31 @@ import RepositoryCard from "./RepositoryCard";
 import { Github } from "lucide-react";
 
 const repos = [
-  { name: "Nombre del repositorio", description: "Esta es la descripción del repositorio en cuestión, es muy bonito pienso yo." },
-  { name: "Nombre del repositorio", description: "Esta es la descripción del repositorio en cuestión, es muy bonito pienso yo." },
-  { name: "Nombre del repositorio", description: "Esta es la descripción del repositorio en cuestión, es muy bonito pienso yo." },
-  { name: "Nombre del repositorio", description: "Esta es la descripción del repositorio en cuestión, es muy bonito pienso yo." },
-  { name: "Nombre del repositorio", description: "Esta es la descripción del repositorio en cuestión, es muy bonito pienso yo." },
+  { 
+    name: "mediaserver", 
+    description: "API escrita totalmente en Java usando Spring Boot, gestiona la funcionalidad de una 'Jam de Spotify' para una app movil.",
+    url: "https://github.com/AleoshGG/mediaserver"
+  },
+  { 
+    name: "NeuralNetworkModel1", 
+    description: "Este es un repositorio en una etapa inicil que busca representar a una red neuronal artificial.",
+    url: "https://github.com/AleoshGG/NeuralNetworkModel1"
+  },
+  { 
+    name: "LearnSS", 
+    description: "Aplicación móvil nativa Android, construida con Kotlin para la divulgación científica a niños.",
+    url: "https://github.com/AleoshGG/LearnSS"
+  },
+  { 
+    name: "Genetic-Algorithm", 
+    description: "Implementación de un algoritmo genético para su estudio.",
+    url: "https://github.com/AleoshGG/Genetic-Algorithm"
+  },
+  { 
+    name: "PyBot-DataServer", 
+    description: "Backend local diseñado para un prototipo robótico que funciona con un OS bajo una Raspberry Pi 4.",
+    url: "https://github.com/AleoshGG/PyBot-DataServer"
+  },
 ];
 
 const ProfileSection = () => (
@@ -51,7 +71,7 @@ const ProfileSection = () => (
         </motion.a>
         <div className="flex flex-col gap-3">
           {repos.map((repo, i) => (
-            <RepositoryCard key={i} name={repo.name} description={repo.description} index={i} />
+            <RepositoryCard key={i} name={repo.name} description={repo.description} index={i} url={repo.url} />
           ))}
         </div>
       </div>
