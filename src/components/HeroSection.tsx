@@ -1,20 +1,34 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import heroBg from "@/assets/hero-bg.jpg";
-import { Mail, Github, Send, Linkedin, MessageCircle, Instagram } from "lucide-react";
 import Typewriter from "./Typewriter";
 
 const socialLinks = [
-  { icon: Mail, href: "#", label: "Email" },
-  { icon: Github, href: "#", label: "GitHub" },
-  { icon: Send, href: "#", label: "Telegram" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: MessageCircle, href: "#", label: "WhatsApp" },
-  { icon: Instagram, href: "#", label: "Instagram" },
+  { icon: "/src/assets/gmail.webp", href: "https://mail.google.com/mail/?view=cm&fs=1&to=aleoguzman092@gmail.com", label: "Email" },
+  { icon: "/src/assets/github.webp", href: "https://github.com/AleoshGG", label: "GitHub" },
+  { icon: "/src/assets/telegram.webp", href: "https://t.me/AleoshGG", label: "Telegram" },
+  { icon: "/src/assets/linkedin.webp", href: "https://linkedin.com/in/aleoshgg", label: "LinkedIn" },
+  { icon: "/src/assets/whatsapp.webp", href: "https://wa.me/529671920196", label: "WhatsApp" },
+  { icon: "/src/assets/instagram.webp", href: "https://instagram.com/aleoshgg", label: "Instagram" },
 ];
 
 const HeroSection = () => {
   const [titleReady, setTitleReady] = useState(false);
+
+  // Función para manejar la descarga del CV
+  const handleDownloadCV = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    
+    // Ruta del archivo. Debe estar en la carpeta public/
+    const cvUrl = "/src/assets/CV_Alexis_Guzmán.pdf"; 
+    
+    const link = document.createElement("a");
+    link.href = cvUrl;
+    link.download = "CV_Alexis_Guzman.pdf"; // Nombre con el que se guardará el archivo
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   return (
     <section className="relative min-h-screen flex flex-col overflow-hidden">
@@ -43,7 +57,8 @@ const HeroSection = () => {
         </a>
         <a
           href="#"
-          className="glass-surface-hover px-5 py-2 rounded-md font-mono text-xs uppercase tracking-[0.15em] text-foreground hover:text-primary transition-colors duration-300"
+          onClick={handleDownloadCV}
+          className="glass-surface-hover px-5 py-2 rounded-md font-mono text-xs uppercase tracking-[0.15em] text-foreground hover:text-primary transition-colors duration-300 cursor-pointer"
         >
           Descargar CV
         </a>
@@ -115,7 +130,7 @@ const HeroSection = () => {
               contacto
             </p>
             <div className="flex gap-3">
-              {socialLinks.map(({ icon: Icon, href, label }, i) => (
+              {socialLinks.map(({ icon, href, label }, i) => (
                 <motion.a
                   key={label}
                   href={href}
@@ -123,9 +138,13 @@ const HeroSection = () => {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.7 + i * 0.08, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                  className="w-11 h-11 rounded-lg glass-surface-hover flex items-center justify-center group"
+                  className="w-11 h-11 rounded-full glass-surface-hover flex items-center justify-center group"
                 >
-                  <Icon className="w-5 h-5 text-muted-foreground grayscale group-hover:grayscale-0 group-hover:text-primary transition-all duration-300" />
+                  <img 
+                    src={icon} 
+                    alt={label} 
+                    className="w-12 h-12 object-contain grayscale group-hover:grayscale-0 transition-all duration-300" 
+                  />
                 </motion.a>
               ))}
             </div>
